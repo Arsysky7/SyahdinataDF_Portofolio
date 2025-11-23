@@ -1,5 +1,6 @@
 'use client'
 
+import React from 'react'
 import { motion } from 'framer-motion'
 import { Github, Mail, Heart, ArrowUp } from 'lucide-react'
 import { InstagramIcon } from './icons/InstagramIcon'
@@ -51,10 +52,11 @@ const Footer = () => {
                   transition={{ duration: 0.3 }}
                   className="text-gray-400 hover:text-white transition-colors"
                 >
-                  {typeof social.icon === 'function' ?
-                    <social.icon size={20} /> :
+                  {social.label === 'Instagram' ? (
                     <social.icon size={20} />
-                  }
+                  ) : (
+                    <social.icon size={20} />
+                  )}
                 </motion.a>
               ))}
             </div>
