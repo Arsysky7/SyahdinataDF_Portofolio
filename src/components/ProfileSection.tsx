@@ -174,12 +174,13 @@ const ProfileSection = () => {
                 transition={{ duration: 0.8, delay: 0.3 }}
                 className="absolute inset-8 bg-gradient-to-br from-blue-400 to-cyan-400 rounded-full overflow-hidden shadow-2xl border-4 border-white"
               >
-                <div className="w-full h-full bg-gray-200 flex items-center justify-center">
-                  {/* Placeholder for actual photo */}
-                  <div className="text-center">
-                    <div className="text-6xl mb-2">👨‍💻</div>
-                    <p className="text-sm text-gray-600">Aril's Photo</p>
-                  </div>
+                <div className="w-full h-full bg-cover bg-center bg-no-repeat">
+                  <img
+                    src="/profile-photo.png"
+                    alt="Syahdinata Dwi Fachril - Professional Profile Photo"
+                    className="w-full h-full object-cover"
+                    loading="eager"
+                  />
                 </div>
               </motion.div>
 

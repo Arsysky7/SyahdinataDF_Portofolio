@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Github, ExternalLink, Database, Cpu } from 'lucide-react'
+import { Github, ExternalLink, Database, Cpu, Shield, Lock, Upload, Settings, Layers, Cloud } from 'lucide-react'
 import { RustIcon } from './icons/RustIcon'
 import { AxumIcon } from './icons/AxumIcon'
 import { PostgresIcon } from './icons/PostgresIcon'
@@ -16,14 +16,38 @@ const ProjectsSection = () => {
     {
       title: 'BIGAUTO',
       subtitle: 'Microservices Automotive Booking Platform',
-      description: 'Microservices platform for automotive booking management with 8 complete services built with Rust. Features JWT 2FA authentication, Row Level Security, and event-driven communication via NATS.io. Production-ready with Docker containerization and optimized for Railway deployment.',
+      description: 'Enterprise automotive booking platform with 8 microservices built in Rust. Advanced security system with JWT authentication, 2FA protection, and event-driven architecture for real-time communication.',
       features: [
-        '8 Microservices Architecture',
-        'JWT Authentication with 2FA',
-        'Row Level Security',
-        'Event-Driven via NATS.io',
-        'Docker Containerization',
-        'Zeabur Deployment Ready'
+        {
+          icon: Layers,
+          title: '8 Microservices Architecture',
+          description: 'Gateway, Auth, Booking, Payment, Notifications, Analytics, Inventory, User Services'
+        },
+        {
+          icon: Shield,
+          title: 'Advanced Security System',
+          description: 'JWT access + refresh token rotation, 2FA (Time-based OTP), Argon2 password hashing'
+        },
+        {
+          icon: Lock,
+          title: 'Row Level Security',
+          description: 'Per-user resource isolation with PostgreSQL RLS policies for multi-tenant architecture'
+        },
+        {
+          icon: Settings,
+          title: 'Enterprise Authentication',
+          description: 'Role-based access control with fine-grained permissions and comprehensive audit logging system'
+        },
+        {
+          icon: Cloud,
+          title: 'Event-Driven Architecture',
+          description: 'NATS.io messaging for real-time communication between microservices'
+        },
+        {
+          icon: Database,
+          title: 'Production Deployment',
+          description: 'Docker containerization with Zeabur optimization and monitoring integration'
+        }
       ],
       techStack: [
         { name: 'Rust', Icon: RustIcon, color: 'bg-orange-500' },
@@ -31,29 +55,59 @@ const ProjectsSection = () => {
         { name: 'PostgreSQL', Icon: PostgresIcon, color: 'bg-blue-600' },
         { name: 'Redis', Icon: RedisIcon, color: 'bg-red-500' },
         { name: 'NATS.io', Icon: NatsIcon, color: 'bg-purple-500' },
-        { name: 'Docker', Icon: DockerIcon, color: 'bg-blue-400' }
+        { name: 'Tokio', Icon: TokioIcon, color: 'bg-blue-700' },
+        { name: 'SQLx', Icon: SQLxIcon, color: 'bg-teal-500' },
+        { name: 'Docker', Icon: DockerIcon, color: 'bg-blue-400' },
+        { name: 'Zeabur', Icon: Cloud, color: 'bg-purple-400' }
       ],
       github: 'https://github.com/Arsysky7/BIGAUTO',
       demo: '#'
     },
     {
       title: 'BookStrore',
-      subtitle: 'Microservices Digital Bookstore',
-      description: 'Microservices digital bookstore with 4 services: Gateway, Auth, Book, and Payment. Features JWT authentication, Midtrans payment integration, file uploads, admin dashboard, PostgreSQL + Redis for data management, and complete Docker containerization.',
+      subtitle: 'Enterprise Digital Bookstore Platform',
+      description: 'Complete digital bookstore with 4 microservices architecture. Features secure authentication, Midtrans payment integration, and enterprise file management. Built with clean modular architecture and production security.',
       features: [
-        '4 Microservices Architecture',
-        'JWT Authentication System',
-        'Midtrans Payment Gateway',
-        'File Upload System',
-        'Admin Dashboard',
-        'Docker Containerized'
+        {
+          icon: Layers,
+          title: 'Modular Architecture',
+          description: 'Rust stable + Axum Framework + Tokio Runtime for scalable microservices'
+        },
+        {
+          icon: Shield,
+          title: 'Enterprise Security',
+          description: 'JWT authentication with token refresh mechanism, RBAC system, Argon2 password hashing, and PostgreSQL Row Level Security'
+        },
+        {
+          icon: Upload,
+          title: 'Secure File Management',
+          description: 'File upload security with type validation, size limits, and malware scanning'
+        },
+        {
+          icon: Settings,
+          title: 'Role-Based Access Control',
+          description: 'Granular permissions system for admin, staff, and customer roles'
+        },
+        {
+          icon: Database,
+          title: 'Production Database',
+          description: 'PostgreSQL with Redis caching, connection pooling, and query optimization'
+        },
+        {
+          icon: Cloud,
+          title: 'Containerized Deployment',
+          description: 'Docker + Nginx with SSL termination, load balancing, and health checks'
+        }
       ],
       techStack: [
         { name: 'Rust', Icon: RustIcon, color: 'bg-orange-500' },
         { name: 'Axum', Icon: AxumIcon, color: 'bg-blue-500' },
+        { name: 'Tokio', Icon: TokioIcon, color: 'bg-blue-700' },
+        { name: 'SQLx', Icon: SQLxIcon, color: 'bg-teal-500' },
         { name: 'PostgreSQL', Icon: PostgresIcon, color: 'bg-blue-600' },
         { name: 'Redis', Icon: RedisIcon, color: 'bg-red-500' },
-        { name: 'Docker', Icon: DockerIcon, color: 'bg-blue-400' }
+        { name: 'Docker', Icon: DockerIcon, color: 'bg-blue-400' },
+        { name: 'Nginx', Icon: Cloud, color: 'bg-green-500' }
       ],
       github: 'https://github.com/Arsysky7/BookStrore',
       demo: '#'
@@ -212,7 +266,7 @@ const ProjectsSection = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl font-bold text-gray-800 mb-4">
+          <h2 className="text-4xl font-bold text-gray-900 mb-4">
             Featured <span className="text-blue-600">Projects</span>
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-blue-400 to-cyan-400 mx-auto rounded-full"></div>
@@ -237,10 +291,10 @@ const ProjectsSection = () => {
                 <div className="mb-6">
                   <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-4">
                     <div className="mb-4 md:mb-0">
-                      <h3 className="text-3xl font-bold text-gray-800 mb-2">
+                      <h3 className="text-3xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-600 bg-clip-text text-transparent mb-2">
                         {project.title}
                       </h3>
-                      <p className="text-xl text-blue-600 font-medium">
+                      <p className="text-xl bg-gradient-to-r from-blue-500 to-cyan-500 bg-clip-text text-transparent font-semibold">
                         {project.subtitle}
                       </p>
                     </div>
@@ -248,27 +302,38 @@ const ProjectsSection = () => {
                     </div>
 
                   {/* Description */}
-                  <p className="text-gray-600 leading-relaxed text-lg">
+                  <p className="text-gray-700 leading-relaxed text-lg">
                     {project.description}
                   </p>
                 </div>
 
                 {/* Features */}
                 <div className="mb-8">
-                  <h4 className="text-lg font-bold text-gray-800 mb-4 flex items-center gap-2">
-                    <Cpu className="text-blue-500" size={20} />
-                    Key Features
+                  <h4 className="text-xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-600 bg-clip-text text-transparent mb-6 flex items-center gap-2">
+                    <Cpu className="text-blue-500" size={24} />
+                    Enterprise Features
                   </h4>
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+                  <div className="space-y-4">
                     {project.features.map((feature, featureIndex) => (
                       <motion.div
-                        key={feature}
+                        key={feature.title}
                         variants={featureVariants}
+                        initial={{ opacity: 0, x: -20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
                         transition={{ delay: 0.1 + featureIndex * 0.1 }}
-                        className="flex items-center gap-2 p-3 bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg border border-blue-100"
+                        className="flex gap-4 p-4 bg-white rounded-xl border border-gray-300 hover:border-blue-400 hover:shadow-xl transition-all duration-300 group shadow-md"
                       >
-                        <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                        <span className="text-gray-700 font-medium">{feature}</span>
+                        <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center text-white shadow-md group-hover:scale-110 transition-transform duration-300">
+                          <feature.icon size={20} />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <h5 className="font-semibold bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-600 bg-clip-text text-transparent mb-1">
+                            {feature.title}
+                          </h5>
+                          <p className="text-sm text-gray-800 leading-relaxed font-semibold">
+                            {feature.description}
+                          </p>
+                        </div>
                       </motion.div>
                     ))}
                   </div>
@@ -276,23 +341,31 @@ const ProjectsSection = () => {
 
                 {/* Tech Stack */}
                 <div className="mb-8">
-                  <h4 className="text-lg font-bold text-gray-800 mb-4 flex items-center gap-2">
-                    <Database className="text-green-500" size={20} />
-                    Tech Stack
+                  <h4 className="text-xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-600 bg-clip-text text-transparent mb-6 flex items-center gap-2">
+                    <Database className="text-blue-500" size={24} />
+                    Technology Stack
                   </h4>
-                  <div className="flex flex-wrap gap-3">
+                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
                     {project.techStack.map((tech, techIndex) => (
                       <motion.div
                         key={tech.name}
                         variants={techVariants}
-                        transition={{ delay: 0.3 + techIndex * 0.1 }}
-                        whileHover={{ scale: 1.05, y: -2 }}
-                        className="flex items-center gap-2 px-4 py-2 bg-white border-2 border-gray-200 rounded-full hover:border-blue-400 hover:shadow-md transition-all cursor-default"
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: 0.3 + techIndex * 0.08 }}
+                        whileHover={{
+                          scale: 1.1,
+                          y: -4,
+                          transition: { duration: 0.2 }
+                        }}
+                        className="flex flex-col items-center p-4 bg-white rounded-xl shadow-md hover:shadow-xl border border-gray-200 hover:border-blue-300 transition-all duration-300 group cursor-default"
                       >
-                        <div className={`w-6 h-6 ${tech.color} rounded-full flex items-center justify-center shadow-sm`}>
-                          <tech.Icon size={14} className="text-white" />
+                        <div className={`w-12 h-12 ${tech.color} rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300 mb-2`}>
+                          <tech.Icon size={20} className="text-white" />
                         </div>
-                        <span className="font-medium text-gray-700">{tech.name}</span>
+                        <span className="text-sm font-semibold text-gray-800 text-center">
+                          {tech.name}
+                        </span>
                       </motion.div>
                     ))}
                   </div>
@@ -335,7 +408,7 @@ const ProjectsSection = () => {
           className="mt-20 text-center"
         >
           <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl p-10 border border-blue-200 max-w-3xl mx-auto">
-            <h3 className="text-3xl font-bold text-gray-800 mb-6">
+            <h3 className="text-3xl font-bold text-gray-700 mb-6">
               Interested in Collaboration?
             </h3>
             <p className="text-lg text-gray-600 mb-8 leading-relaxed">
