@@ -206,7 +206,9 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 0.8 }}
             className="flex flex-wrap gap-4 justify-center mb-8"
           >
-            <motion.button
+            <motion.a
+              href="/cv.pdf"
+              download="Syahdinata_Dwi_Fachril_CV.pdf"
               whileHover={{
                 scale: 1.05,
                 boxShadow: '0 10px 30px rgba(59, 130, 246, 0.4)',
@@ -219,7 +221,7 @@ const Hero = () => {
                 <Download size={20} />
                 Download CV
               </div>
-            </motion.button>
+            </motion.a>
 
             <motion.button
               whileHover={{
