@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { useMemo } from 'react'
 import { Github, ExternalLink, Database, Cpu, Shield, Lock, Upload, Settings, Layers, Cloud } from 'lucide-react'
 import { RustIcon } from './icons/RustIcon'
 import { AxumIcon } from './icons/AxumIcon'
@@ -12,6 +13,31 @@ import { SQLxIcon } from './icons/SQLxIcon'
 import { DockerIcon } from './icons/DockerIcon'
 
 const ProjectsSection = () => {
+  // Generate consistent random values for bubbles to avoid hydration mismatch
+  const largeBubbles = useMemo(() =>
+    Array.from({ length: 11 }, (_, i) => ({
+      key: `bubble-${i}`,
+      width: 40 + ((i * 13) % 75),
+      height: 40 + ((i * 17) % 75),
+      left: `${(i * 9.1) % 100}%`,
+      top: `${(i * 8.7) % 100}%`,
+      xMove: ((i * 9) % 90) - 45,
+      duration: 11 + ((i * 5) % 8),
+      delay: (i * 1.1) % 5.5,
+    })), [])
+
+  const smallBubbles = useMemo(() =>
+    Array.from({ length: 14 }, (_, i) => ({
+      key: `small-bubble-${i}`,
+      width: 10 + ((i * 4) % 28),
+      height: 10 + ((i * 6) % 28),
+      left: `${(i * 6.7) % 100}%`,
+      top: `${(i * 7.9) % 100}%`,
+      xMove: ((i * 3) % 40) - 20,
+      duration: 8 + ((i * 2) % 6),
+      delay: (i * 0.7) % 3.5,
+    })), [])
+
   const projects = [
     {
       title: 'BIGAUTO',
@@ -163,26 +189,26 @@ const ProjectsSection = () => {
       {/* Animated Background Elements - Red-Tinted Bubbles */}
       <div className="absolute inset-0 pointer-events-none">
         {/* Large Floating Bubbles with Red Edges */}
-        {[...Array(11)].map((_, i) => (
+        {largeBubbles.map((bubble) => (
           <motion.div
-            key={`bubble-${i}`}
+            key={bubble.key}
             className="absolute rounded-full"
             style={{
-              width: Math.random() * 75 + 40,
-              height: Math.random() * 75 + 40,
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
+              width: bubble.width,
+              height: bubble.height,
+              left: bubble.left,
+              top: bubble.top,
             }}
             animate={{
               y: [0, -130, 0],
-              x: [0, Math.random() * 90 - 45, 0],
+              x: [0, bubble.xMove, 0],
               scale: [1, 1.2, 1],
               opacity: [0.12, 0.32, 0.12],
             }}
             transition={{
-              duration: Math.random() * 8 + 11,
+              duration: bubble.duration,
               repeat: Infinity,
-              delay: Math.random() * 5.5,
+              delay: bubble.delay,
               ease: "easeInOut"
             }}
           >
@@ -203,25 +229,25 @@ const ProjectsSection = () => {
         ))}
 
         {/* Small Bubbles */}
-        {[...Array(14)].map((_, i) => (
+        {smallBubbles.map((bubble) => (
           <motion.div
-            key={`small-bubble-${i}`}
+            key={bubble.key}
             className="absolute rounded-full bg-gradient-to-br from-transparent via-white/5 to-rose-200/30 border border-red-100/40"
             style={{
-              width: Math.random() * 28 + 10,
-              height: Math.random() * 28 + 10,
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
+              width: bubble.width,
+              height: bubble.height,
+              left: bubble.left,
+              top: bubble.top,
             }}
             animate={{
               y: [0, -75, 0],
-              x: [0, Math.random() * 40 - 20, 0],
+              x: [0, bubble.xMove, 0],
               opacity: [0.2, 0.45, 0.2],
             }}
             transition={{
-              duration: Math.random() * 6 + 8,
+              duration: bubble.duration,
               repeat: Infinity,
-              delay: Math.random() * 3.5,
+              delay: bubble.delay,
               ease: "easeInOut"
             }}
           />

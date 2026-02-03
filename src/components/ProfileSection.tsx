@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { useMemo } from 'react'
 import { RustIcon } from './icons/RustIcon'
 import { AxumIcon } from './icons/AxumIcon'
 import { PostgresIcon } from './icons/PostgresIcon'
@@ -9,6 +10,31 @@ import { UbuntuIcon } from './icons/UbuntuIcon'
 import { RedisIcon } from './icons/RedisIcon'
 
 const ProfileSection = () => {
+  // Generate consistent random values for bubbles to avoid hydration mismatch
+  const largeBubbles = useMemo(() =>
+    Array.from({ length: 8 }, (_, i) => ({
+      key: `bubble-${i}`,
+      width: 60 + (i * 15) % 100,
+      height: 60 + (i * 17) % 100,
+      left: `${(i * 12.5) % 100}%`,
+      top: `${(i * 13.7) % 100}%`,
+      xMove: ((i * 7) % 120) - 60,
+      duration: 15 + (i * 2) % 10,
+      delay: (i * 1.5) % 8,
+    })), [])
+
+  const smallBubbles = useMemo(() =>
+    Array.from({ length: 12 }, (_, i) => ({
+      key: `small-bubble-${i}`,
+      width: 15 + (i * 5) % 40,
+      height: 15 + (i * 7) % 40,
+      left: `${(i * 8.3) % 100}%`,
+      top: `${(i * 9.1) % 100}%`,
+      xMove: ((i * 5) % 60) - 30,
+      duration: 10 + (i * 1.5) % 8,
+      delay: (i * 0.8) % 5,
+    })), [])
+
   const techLogos = [
     { Icon: RustIcon, color: 'text-orange-500', position: 'top-0 left-0' },
     { Icon: AxumIcon, color: 'text-blue-500', position: 'top-0 right-0' },
@@ -23,26 +49,26 @@ const ProfileSection = () => {
       {/* Animated Background Elements */}
       <div className="absolute inset-0 pointer-events-none">
         {/* Large Floating Bubbles with Red Edges - More Visible */}
-        {[...Array(8)].map((_, i) => (
+        {largeBubbles.map((bubble) => (
           <motion.div
-            key={`bubble-${i}`}
+            key={bubble.key}
             className="absolute rounded-full"
             style={{
-              width: Math.random() * 100 + 60,
-              height: Math.random() * 100 + 60,
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
+              width: bubble.width,
+              height: bubble.height,
+              left: bubble.left,
+              top: bubble.top,
             }}
             animate={{
               y: [0, -200, 0],
-              x: [0, Math.random() * 120 - 60, 0],
+              x: [0, bubble.xMove, 0],
               scale: [1, 1.2, 1],
               opacity: [0.3, 0.6, 0.3],
             }}
             transition={{
-              duration: Math.random() * 10 + 15,
+              duration: bubble.duration,
               repeat: Infinity,
-              delay: Math.random() * 8,
+              delay: bubble.delay,
               ease: "easeInOut"
             }}
           >
@@ -63,25 +89,25 @@ const ProfileSection = () => {
         ))}
 
         {/* Small Bubbles - More Visible */}
-        {[...Array(12)].map((_, i) => (
+        {smallBubbles.map((bubble) => (
           <motion.div
-            key={`small-bubble-${i}`}
+            key={bubble.key}
             className="absolute rounded-full bg-gradient-to-br from-white/10 via-pink-200/30 to-red-300/40 border-2 border-red-200/50"
             style={{
-              width: Math.random() * 40 + 15,
-              height: Math.random() * 40 + 15,
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
+              width: bubble.width,
+              height: bubble.height,
+              left: bubble.left,
+              top: bubble.top,
             }}
             animate={{
               y: [0, -100, 0],
-              x: [0, Math.random() * 60 - 30, 0],
+              x: [0, bubble.xMove, 0],
               opacity: [0.4, 0.7, 0.4],
             }}
             transition={{
-              duration: Math.random() * 8 + 10,
+              duration: bubble.duration,
               repeat: Infinity,
-              delay: Math.random() * 5,
+              delay: bubble.delay,
               ease: "easeInOut"
             }}
           />

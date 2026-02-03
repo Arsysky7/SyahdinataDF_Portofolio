@@ -4,6 +4,7 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import { Github, Mail, Heart, ArrowUp } from 'lucide-react'
 import { InstagramIcon } from './icons/InstagramIcon'
+import { LinkedInIcon } from './icons/LinkedInIcon'
 
 const Footer = () => {
   const scrollToTop = () => {
@@ -13,6 +14,7 @@ const Footer = () => {
   const socialLinks = [
     { icon: Github, href: 'https://github.com/Arsysky7', label: 'GitHub' },
     { icon: InstagramIcon, href: 'https://www.instagram.com/syahdinata/', label: 'Instagram' },
+    { icon: LinkedInIcon, href: 'https://www.linkedin.com/in/syahdinata-dwi-fachril-a52596210/', label: 'LinkedIn' },
     { icon: Mail, href: 'mailto:arilsyah25@gmail.com', label: 'Email' },
   ]
 

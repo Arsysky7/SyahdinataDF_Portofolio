@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { Github, Linkedin, Mail, Download, ExternalLink, Phone } from 'lucide-react'
 import { InstagramIcon } from './icons/InstagramIcon'
+import { LinkedInIcon } from './icons/LinkedInIcon'
 
 const Hero = () => {
   return (
@@ -207,7 +208,7 @@ const Hero = () => {
             className="flex flex-wrap gap-4 justify-center mb-8"
           >
             <motion.a
-              href="/cv.pdf"
+              href="/SyahdinataCV.pdf"
               download="Syahdinata_Dwi_Fachril_CV.pdf"
               whileHover={{
                 scale: 1.05,
@@ -252,6 +253,11 @@ const Hero = () => {
                 icon: InstagramIcon,
                 label: 'Instagram',
                 href: 'https://www.instagram.com/syahdinata/'
+              },
+              {
+                icon: LinkedInIcon,
+                label: 'LinkedIn',
+                href: 'https://www.linkedin.com/in/syahdinata-dwi-fachril-a52596210/'
               },
               {
                 icon: Phone,

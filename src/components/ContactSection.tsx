@@ -3,9 +3,45 @@
 import { motion } from 'framer-motion'
 import { Mail, Phone, MapPin, Send, Github } from 'lucide-react'
 import { InstagramIcon } from './icons/InstagramIcon'
-import { useState } from 'react'
+import { LinkedInIcon } from './icons/LinkedInIcon'
+import { useState, useMemo } from 'react'
 
 const ContactSection = () => {
+  // Generate consistent random values for bubbles to avoid hydration mismatch
+  const floatingCircles = useMemo(() =>
+    Array.from({ length: 8 }, (_, i) => ({
+      key: `circle-${i}`,
+      width: 100 + (i * 25) % 200,
+      height: 100 + (i * 30) % 200,
+      left: `${(i * 12.5) % 100}%`,
+      top: `${(i * 11.7) % 100}%`,
+      xMove: ((i * 13) % 100) - 50,
+      yMove: ((i * 11) % 100) - 50,
+      scale: 0.8 + ((i * 3) % 20) / 100,
+      duration: 10 + ((i * 7) % 10),
+      delay: (i * 1.5) % 5,
+    })), [])
+
+  const techIcons = useMemo(() =>
+    [Mail, Phone, MapPin].map((Icon, i) => ({
+      Icon,
+      key: `icon-${i}`,
+      left: 10 + ((i * 23) % 70),
+      top: 10 + ((i * 19) % 70),
+      scale: 0.8 + ((i * 4) % 20) / 100,
+      duration: 15 + ((i * 9) % 20),
+    })), [])
+
+  const gradientOrbs = useMemo(() =>
+    Array.from({ length: 3 }, (_, i) => ({
+      key: `orb-${i}`,
+      width: 200 + ((i * 47) % 300),
+      height: 200 + ((i * 53) % 300),
+      left: `${(i * 33.3) % 100}%`,
+      top: `${(i * 27.7) % 100}%`,
+      duration: 12 + ((i * 5) % 8),
+    })), [])
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -62,6 +98,11 @@ const ContactSection = () => {
       icon: InstagramIcon,
       href: 'https://www.instagram.com/syahdinata/',
       label: 'Instagram'
+    },
+    {
+      icon: LinkedInIcon,
+      href: 'https://www.linkedin.com/in/syahdinata-dwi-fachril-a52596210/',
+      label: 'LinkedIn'
     }
   ]
 
@@ -70,76 +111,76 @@ const ContactSection = () => {
       {/* Animated Background Elements */}
       <div className="absolute inset-0 pointer-events-none">
         {/* Floating Circles */}
-        {[...Array(8)].map((_, i) => (
+        {floatingCircles.map((circle) => (
           <motion.div
-            key={`circle-${i}`}
+            key={circle.key}
             className="absolute rounded-full bg-gradient-to-r from-blue-400/20 to-cyan-400/20 blur-xl"
             style={{
-              width: Math.random() * 200 + 100,
-              height: Math.random() * 200 + 100,
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
+              width: circle.width,
+              height: circle.height,
+              left: circle.left,
+              top: circle.top,
             }}
             animate={{
-              x: [0, Math.random() * 100 - 50, 0],
-              y: [0, Math.random() * 100 - 50, 0],
-              scale: [1, Math.random() * 0.5 + 0.8, 1],
+              x: [0, circle.xMove, 0],
+              y: [0, circle.yMove, 0],
+              scale: [1, circle.scale, 1],
               opacity: [0.3, 0.6, 0.3],
             }}
             transition={{
-              duration: Math.random() * 10 + 10,
+              duration: circle.duration,
               repeat: Infinity,
               ease: "easeInOut",
-              delay: Math.random() * 5,
+              delay: circle.delay,
             }}
           />
         ))}
 
         {/* Floating Tech Icons */}
-        {[Mail, Phone, MapPin].map((Icon, index) => (
+        {techIcons.map((item, index) => (
           <motion.div
-            key={`icon-${index}`}
+            key={item.key}
             className="absolute opacity-10"
             style={{
-              left: `${Math.random() * 80 + 10}%`,
-              top: `${Math.random() * 80 + 10}%`,
+              left: `${item.left}%`,
+              top: `${item.top}%`,
             }}
             animate={{
               rotate: [0, 360],
-              scale: [1, Math.random() * 0.5 + 0.8, 1],
+              scale: [1, item.scale, 1],
               opacity: [0.1, 0.2, 0.1],
             }}
             transition={{
-              duration: Math.random() * 20 + 15,
+              duration: item.duration,
               repeat: Infinity,
               ease: "linear",
               delay: index * 2,
             }}
           >
-            <Icon size={60} className="text-blue-500" />
+            <item.Icon size={60} className="text-blue-500" />
           </motion.div>
         ))}
 
         {/* Gradient Orbs */}
-        {[...Array(3)].map((_, i) => (
+        {gradientOrbs.map((orb) => (
           <motion.div
-            key={`orb-${i}`}
+            key={orb.key}
             className="absolute rounded-full bg-gradient-to-r from-purple-500/10 to-pink-500/10 blur-3xl"
             style={{
-              width: Math.random() * 300 + 200,
-              height: Math.random() * 300 + 200,
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
+              width: orb.width,
+              height: orb.height,
+              left: orb.left,
+              top: orb.top,
             }}
             animate={{
               scale: [1, 1.3, 1],
               opacity: [0.1, 0.3, 0.1],
             }}
             transition={{
-              duration: Math.random() * 8 + 12,
+              duration: orb.duration,
               repeat: Infinity,
               ease: "easeInOut",
-              delay: i * 3,
+              delay: parseInt(orb.key.split('-')[1]) * 3,
             }}
           />
         ))}

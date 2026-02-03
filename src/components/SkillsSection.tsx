@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { useMemo } from 'react'
 import { Code, Database, Server, Terminal, Shield, Zap } from 'lucide-react'
 import { RustIcon } from './icons/RustIcon'
 import { AxumIcon } from './icons/AxumIcon'
@@ -14,6 +15,31 @@ import { KaliIcon } from './icons/KaliIcon'
 import { UbuntuIcon } from './icons/UbuntuIcon'
 
 const SkillsSection = () => {
+  // Generate consistent random values for bubbles to avoid hydration mismatch
+  const largeBubbles = useMemo(() =>
+    Array.from({ length: 10 }, (_, i) => ({
+      key: `bubble-${i}`,
+      width: 35 + (i * 11) % 70,
+      height: 35 + (i * 13) % 70,
+      left: `${(i * 10.1) % 100}%`,
+      top: `${(i * 11.3) % 100}%`,
+      xMove: ((i * 8) % 80) - 40,
+      duration: 10 + (i * 2) % 7,
+      delay: (i * 1.2) % 5,
+    })), [])
+
+  const smallBubbles = useMemo(() =>
+    Array.from({ length: 12 }, (_, i) => ({
+      key: `small-bubble-${i}`,
+      width: 10 + (i * 4) % 25,
+      height: 10 + (i * 6) % 25,
+      left: `${(i * 7.7) % 100}%`,
+      top: `${(i * 8.9) % 100}%`,
+      xMove: ((i * 3) % 35) - 17,
+      duration: 7 + (i * 1) % 5,
+      delay: (i * 0.5) % 3,
+    })), [])
+
   const skillCategories = [
     {
       title: 'Backend Development',
@@ -109,26 +135,26 @@ const SkillsSection = () => {
       {/* Animated Background Elements - Red-Tinted Bubbles */}
       <div className="absolute inset-0 pointer-events-none">
         {/* Large Floating Bubbles with Red Edges */}
-        {[...Array(10)].map((_, i) => (
+        {largeBubbles.map((bubble) => (
           <motion.div
-            key={`bubble-${i}`}
+            key={bubble.key}
             className="absolute rounded-full"
             style={{
-              width: Math.random() * 70 + 35,
-              height: Math.random() * 70 + 35,
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
+              width: bubble.width,
+              height: bubble.height,
+              left: bubble.left,
+              top: bubble.top,
             }}
             animate={{
               y: [0, -120, 0],
-              x: [0, Math.random() * 80 - 40, 0],
+              x: [0, bubble.xMove, 0],
               scale: [1, 1.15, 1],
               opacity: [0.15, 0.35, 0.15],
             }}
             transition={{
-              duration: Math.random() * 7 + 10,
+              duration: bubble.duration,
               repeat: Infinity,
-              delay: Math.random() * 5,
+              delay: bubble.delay,
               ease: "easeInOut"
             }}
           >
@@ -149,25 +175,25 @@ const SkillsSection = () => {
         ))}
 
         {/* Small Bubbles */}
-        {[...Array(12)].map((_, i) => (
+        {smallBubbles.map((bubble) => (
           <motion.div
-            key={`small-bubble-${i}`}
+            key={bubble.key}
             className="absolute rounded-full bg-gradient-to-br from-transparent via-white/6 to-pink-200/25 border border-red-100/40"
             style={{
-              width: Math.random() * 25 + 10,
-              height: Math.random() * 25 + 10,
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
+              width: bubble.width,
+              height: bubble.height,
+              left: bubble.left,
+              top: bubble.top,
             }}
             animate={{
               y: [0, -70, 0],
-              x: [0, Math.random() * 35 - 17, 0],
+              x: [0, bubble.xMove, 0],
               opacity: [0.2, 0.45, 0.2],
             }}
             transition={{
-              duration: Math.random() * 5 + 7,
+              duration: bubble.duration,
               repeat: Infinity,
-              delay: Math.random() * 3,
+              delay: bubble.delay,
               ease: "easeInOut"
             }}
           />
