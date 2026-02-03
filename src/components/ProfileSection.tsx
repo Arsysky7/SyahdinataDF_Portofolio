@@ -341,7 +341,7 @@ const ProfileSection = () => {
                 <div>
                   <div className="font-semibold text-gray-800">Universitas Esa Unggul</div>
                   <div className="text-sm text-gray-600">Informatics Engineering - Faculty of Computer Science</div>
-                  <div className="text-sm text-gray-500">Semester 5 (Bachelor's) • 2023 - Present</div>
+                  <div className="text-sm text-gray-500">Semester 6 (Bachelor's) • 2023 - Present</div>
                   <div className="text-sm font-medium text-purple-600 mt-1">GPA: 3.82</div>
                 </div>
               </div>
