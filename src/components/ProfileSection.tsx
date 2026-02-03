@@ -248,14 +248,14 @@ const ProfileSection = () => {
                 Backend Developer & Cybersecurity Enthusiast
               </h3>
               <p className="text-gray-600 leading-relaxed mb-6">
-                A junior backend developer focused on building skills through various personal projects,
-                especially with Rust and Axum. On the cybersecurity side, I am actively learning pentesting techniques
-                by completing various machines on the Hack The Box platform as real-world scenario training.
+                Active Informatics Engineering student. Currently, I am deeply engaged in Backend Systems Engineering,
+                focusing on leveraging Rust and Axum to build high-performance applications. On the security side,
+                I actively simulate real-world penetration testing scenarios by solving machine challenges on the
+                Hack The Box (HTB) platform.
               </p>
               <p className="text-gray-600 leading-relaxed mb-6">
-                I am used to working fast, with attention to detail, and analytically. Additionally, I am proficient in using Linux systems
-                (Ubuntu & Kali Linux) for backend development, deployment, workflow automation, and pentesting activities
-                such as enumeration, exploitation, and network analysis.
+                I am eager to bring this technical discipline into a professional internship opportunity, seeking to
+                contribute to scalable software architecture and secure infrastructure development.
               </p>
 
               {/* Tech Stack Grid */}
