@@ -7,7 +7,7 @@ import { LinkedInIcon } from './icons/LinkedInIcon'
 
 const Hero = () => {
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
+    <section id="home" className="min-h-[100dvh] h-auto flex items-center justify-center relative overflow-hidden px-4">
       {/* Animated Background Gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-blue-900 via-blue-600 to-cyan-400">
         <div className="absolute inset-0 bg-gradient-to-t from-blue-950/20 to-transparent"></div>
